@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllTables, fetchTables, setTables } from '../../store/tablesReducer';
-import { Card, Form, Button } from 'react-bootstrap';
+import { Form, Button, InputGroup, Container, Row, Col } from 'react-bootstrap';
 
 const TableDetails = () => {
   const { id } = useParams();
@@ -32,60 +32,83 @@ const TableDetails = () => {
   if (!table) return <p>Ładowanie stolika...</p>;
 
   return (
-    <Card className="mb-3 p-3">
-      <Card.Header>Table {table.id}</Card.Header>
-      <Card.Body>
+    <Container style={{ maxWidth: '400px', marginTop: '40px',  marginLeft: 0 }}>
+      <h2>Table {table.id}</h2>
+
+      <Form className="mt-4">
         {/* Status */}
-        <Form.Group className="mb-3">
-          <Form.Label>Status</Form.Label>
-          <Form.Select value={status} onChange={e => setStatus(e.target.value)}>
-            <option>Free</option>
-            <option>Busy</option>
-            <option>Cleaning</option>
-          </Form.Select>
+        <Form.Group as={Row} className="mb-3" controlId="formStatus">
+          <Form.Label column sm={3}>
+            Status:
+          </Form.Label>
+          <Col sm={9}>
+            <Form.Select value={status} onChange={e => setStatus(e.target.value)}>
+              <option>Free</option>
+              <option>Busy</option>
+              <option>Cleaning</option>
+            </Form.Select>
+          </Col>
         </Form.Group>
 
         {/* People */}
-        <Form.Group className="mb-3">
-          <Form.Label>People</Form.Label>
-          <Form.Control
-            type="number"
-            min="0"
-            max={maxPeopleAmount}
-            value={peopleAmount}
-            onChange={e => setPeopleAmount(Number(e.target.value))}
-          />
-          <small className="text-muted">/ {maxPeopleAmount}</small>
-        </Form.Group>
-
-        {/* Max People */}
-        <Form.Group className="mb-3">
-          <Form.Label>Max People</Form.Label>
-          <Form.Control
-            type="number"
-            min="1"
-            value={maxPeopleAmount}
-            onChange={e => setMaxPeopleAmount(Number(e.target.value))}
-          />
+        <Form.Group as={Row} className="mb-3" controlId="formPeople">
+          <Form.Label column sm={3}>
+            People:
+          </Form.Label>
+          <Col sm={9}>
+            <InputGroup style={{ width: 'fit-content' }}>
+              <Form.Control
+                type="number"
+                className="rounded-number"
+                style={{ width: '60px', flex: '0 0 auto', borderRadius: '8px' }}
+                min="0"
+                max={maxPeopleAmount}
+                value={peopleAmount}
+                onChange={e => setPeopleAmount(Number(e.target.value))}
+              />
+              <InputGroup.Text 
+                style={{ background: 'transparent', border: 'none'}}
+              >/</InputGroup.Text>
+              <Form.Control
+                type="number"
+                className="rounded-number"
+                style={{ width: '60px', flex: '0 0 auto', borderRadius: '8px' }}
+                min="1"
+                value={maxPeopleAmount}
+                onChange={e => setMaxPeopleAmount(Number(e.target.value))}
+              />
+            </InputGroup>
+          </Col>
         </Form.Group>
 
         {/* Bill */}
-        <Form.Group className="mb-3">
-          <Form.Label>Bill ($)</Form.Label>
-          <Form.Control
-            type="number"
-            min="0"
-            value={bill}
-            onChange={e => setBill(Number(e.target.value))}
-          />
+        <Form.Group as={Row} className="mb-3" controlId="formBill">
+          <Form.Label column sm={3}>
+            Bill:
+          </Form.Label>
+          <Col sm={9}>
+            <InputGroup>
+              <InputGroup.Text
+                style={{ background: 'transparent', border: 'none'}}
+              >$</InputGroup.Text>
+              <Form.Control
+                type="number"
+                className="rounded-number"
+                style={{ width: '60px', flex: '0 0 auto', borderRadius: '8px' }}
+                min="0"
+                value={bill}
+                onChange={e => setBill(Number(e.target.value))}
+              />
+            </InputGroup>
+          </Col>
         </Form.Group>
 
         {/* Update button */}
-        <Button variant="primary" onClick={handleUpdate} className="w-100">
+        <Button variant="primary" onClick={handleUpdate} className="w-30 mt-3">
           Update
         </Button>
-      </Card.Body>
-    </Card>
+      </Form>
+    </Container>
   );
 };
 
