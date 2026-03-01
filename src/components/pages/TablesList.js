@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTables, getAllTables } from '../../store/tablesReducer';
+import { fetchTables, getAllTables } from '../../store/tablesRedux';
 import { Card, Button, Badge } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 

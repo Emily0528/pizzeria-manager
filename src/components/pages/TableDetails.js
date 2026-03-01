@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllTables, fetchTables, setTables } from '../../store/tablesReducer';
+import { getAllTables, fetchTables, setTables } from '../../store/tablesRedux';
 import { Form, Button, InputGroup, Container, Row, Col } from 'react-bootstrap';
 
 const TableDetails = () => {
