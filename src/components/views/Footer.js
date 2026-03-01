@@ -1,9 +1,12 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 const Footer = () => {
   return (
-    <footer>
-      Footer
+    <footer className="text-center text-muted py-3">
+      <Container>
+        &copy; 2026 Waiter.app
+      </Container>
     </footer>
   );
 };
