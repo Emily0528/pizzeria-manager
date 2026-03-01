@@ -6,10 +6,8 @@ const NavBar = () => {
   return (
     <Navbar bg="primary" variant="dark" expand="lg" className="rounded my-3">
       <Container>
-        {/* Lewa strona – nazwa aplikacji */}
         <Navbar.Brand href="#">Waiter.app</Navbar.Brand>
 
-        {/* Prawa strona – linki */}
         <Nav className="ms-auto">
           <Nav.Link as={NavLink} to="/">
             Home
